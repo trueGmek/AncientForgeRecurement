@@ -1,26 +1,29 @@
 ﻿namespace AFSInterview.Items
 {
-	using System;
-	using UnityEngine;
+    using System;
+    using UnityEngine;
 
-	[Serializable]
-	public class Item
-	{
-		[SerializeField] private string name;
-		[SerializeField] private int value;
+    [Serializable]
+    public class Item
+    {
+        [SerializeField]
+        private string name;
 
-		public string Name => name;
-		public int Value => value;
+        [SerializeField]
+        private int value;
 
-		public Item(string name, int value)
-		{
-			this.name = name;
-			this.value = value;
-		}
+        public string Name => name;
+        public int Value => value;
 
-		public void Use()
-		{
-			Debug.Log("Using" + Name);
-		}
-	}
+        public Item(string name, int value)
+        {
+            this.name = name;
+            this.value = value;
+        }
+
+        public void Use()
+        {
+            Debug.Log("Using" + Name);
+        }
+    }
 }
