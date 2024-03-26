@@ -1,8 +1,8 @@
-﻿namespace AFSInterview.Items
-{
-    using System.Collections.Generic;
-    using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
+namespace AFSInterview.Items
+{
     public class InventoryController : MonoBehaviour
     {
         [SerializeField]
@@ -16,13 +16,14 @@
 
         public void SellAllItemsUpToValue(int maxValue)
         {
-            for (var i = 0; i < items.Count; i++)
+            for (int i = items.Count - 1; i >= 0; i--)
             {
-                var itemValue = items[i].Value;
+                int itemValue = items[i].Value;
                 if (itemValue > maxValue)
                     continue;
 
                 money += itemValue;
+
                 items.RemoveAt(i);
             }
         }
