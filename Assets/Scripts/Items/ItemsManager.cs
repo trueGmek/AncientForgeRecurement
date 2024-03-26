@@ -1,7 +1,5 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace AFSInterview.Items
 {
@@ -26,6 +24,13 @@ namespace AFSInterview.Items
         private float itemSpawnInterval;
 
 
+        private void OnEnable()
+        {
+            _textMeshProUGUI = FindObjectOfType<TextMeshProUGUI>();
+            _lazyCamera = Camera.main;
+            _layerMask = LayerMask.GetMask("Item");
+        }
+
         private void Update()
         {
             if (Time.time >= _nextItemSpawnTime)
@@ -37,7 +42,7 @@ namespace AFSInterview.Items
             if (Input.GetKeyDown(KeyCode.Space))
                 inventoryController.SellAllItemsUpToValue(itemSellMaxValue);
 
-            _textMeshProUGUI.Value.text = $"Money: {inventoryController.Money.ToString()}";
+            _textMeshProUGUI.text = $"Money: {inventoryController.Money.ToString()}";
         }
 
 
@@ -57,7 +62,7 @@ namespace AFSInterview.Items
 
         private void TryPickUpItem()
         {
-            Ray ray = _lazyCamera.Value.ScreenPointToRay(Input.mousePosition);
+            Ray ray = _lazyCamera.ScreenPointToRay(Input.mousePosition);
 
             if (!Physics.Raycast(ray, out RaycastHit hit, 100f, _layerMask) ||
                 !hit.collider.TryGetComponent(out IItemHolder itemHolder))
@@ -71,9 +76,9 @@ namespace AFSInterview.Items
         }
 
 
-        private readonly Lazy<TextMeshProUGUI> _textMeshProUGUI = new(FindObjectOfType<TextMeshProUGUI>);
-        private readonly Lazy<Camera> _lazyCamera = new(Camera.main);
-        private readonly int _layerMask = LayerMask.GetMask("Item");
+        private TextMeshProUGUI _textMeshProUGUI;
+        private Camera _lazyCamera;
+        private int _layerMask;
 
         private float _nextItemSpawnTime;
     }
