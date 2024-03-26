@@ -32,5 +32,15 @@ namespace AFSInterview.Items
         {
             items.Add(item);
         }
+
+        public bool RemoveItem(Item item)
+        {
+            return items.Remove(item);
+        }
+
+        public void AddMoney(int value)
+        {
+            money += value;
+        }
     }
 }
