@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace AFSInterview.Combat
 {
     [CreateAssetMenu(menuName = "Ancient Forge/Combat/Mock Unit Factory")]
     public class MockUnitFactory : AbstractUnitFactory
     {
-        [FormerlySerializedAs("parameters"), SerializeField]
+        [SerializeField]
         private UnitBlueprint blueprint;
 
         [SerializeField]
