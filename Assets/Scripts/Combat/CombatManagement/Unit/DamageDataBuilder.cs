@@ -2,6 +2,7 @@
 
 namespace AFSInterview.Combat
 {
+    //Abstract Factory Pattern
     public struct DamageDataBuilder
     {
         #region Public Methods

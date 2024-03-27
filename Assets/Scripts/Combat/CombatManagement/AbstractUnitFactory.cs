@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace AFSInterview.Combat
 {
+    //Abstract Factory Pattern
     public abstract class AbstractUnitFactory : ScriptableObject
     {
         public abstract List<Unit> CreateUnits(Army blue, Army red);
