@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace AFSInterview.Combat
 {
-    [CreateAssetMenu(menuName = "Ancient Forge/Combat/Test enumerator factory")]
-    public class TestEnumeratorFactory : AbstractCombatEnumeratorFactory
+    [CreateAssetMenu(menuName = "Ancient Forge/Combat/Circular enumerator factory")]
+    public class CircularEnumeratorFactory : AbstractCombatEnumeratorFactory
     {
         public override IEnumerator<Unit> Get(List<Unit> units)
         {
