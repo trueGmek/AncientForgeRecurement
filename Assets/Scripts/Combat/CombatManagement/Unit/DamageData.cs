@@ -6,7 +6,7 @@
 
         public DamageData(int damageValue)
         {
-            this.DamageValue = damageValue;
+            DamageValue = damageValue;
         }
     }
 }

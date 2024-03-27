@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6bf9af568df4b5b8afe2e34b7e7778d, type: 3}
   m_Name: Mechanical
   m_EditorClassIdentifier: 
-  type: 
-  color: {r: 0, g: 0, b: 0, a: 0}
+  type: Mechanical
+  color: {r: 0.3326362, g: 0.38042915, b: 0.6132076, a: 0}

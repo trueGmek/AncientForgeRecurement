@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 726b4d7b17084ddbad3cd4a328716685, type: 3}
+  m_Name: CombatScenarioOne_UnitFactory
+  m_EditorClassIdentifier: 
+  blueArmyBlueprint:
+  - amount: 2
+    blueprint: {fileID: 11400000, guid: 997729f8d5967964a8af41f8fa61098f, type: 2}
+  - amount: 1
+    blueprint: {fileID: 11400000, guid: 6a60c02a7ed01464e84abca1a0228504, type: 2}
+  - amount: 1
+    blueprint: {fileID: 11400000, guid: cae4de702a6c5b74a854c9152a57139a, type: 2}
+  redArmyBlueprint:
+  - amount: 3
+    blueprint: {fileID: 11400000, guid: 6f44896491204be44a6427d8e36fa062, type: 2}
+  - amount: 1
+    blueprint: {fileID: 11400000, guid: 94454bcb1e01eed41b3782777160ac84, type: 2}
+  - amount: 1
+    blueprint: {fileID: 11400000, guid: cae4de702a6c5b74a854c9152a57139a, type: 2}
+  unitPrefab: {fileID: 8830091981023812804, guid: 606aa03eafd82d0468ba7a443c90e781,
+    type: 3}

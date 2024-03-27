@@ -9,8 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6bf9af568df4b5b8afe2e34b7e7778d, type: 3}
-  m_Name: Cataplut
+  m_Script: {fileID: 11500000, guid: ddd2a722a7b8448f938d20e00380d4aa, type: 3}
+  m_Name: UBlueprint_Archer
   m_EditorClassIdentifier: 
-  type: Catapult
-  color: {r: 1, g: 1, b: 1, a: 0}
+  title: Archer
+  initialHealth: 4
+  armour: 1
+  damage: 3
+  attackInterval: 1
+  attributes:
+  - {fileID: 11400000, guid: c20af26efd8411144876ac0ed7fdc20f, type: 2}
+  damageOverrides: []

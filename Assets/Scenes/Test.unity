@@ -377,7 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenRounds: 1
-  abstractUnitFactory: {fileID: 11400000, guid: 7d4f261620a4ee04a93c00ff0b096030,
+  abstractUnitFactory: {fileID: 11400000, guid: 9edbeaeeeb275e84aa59d265349dfbbc,
     type: 2}
   abstractCombatEnumeratorFactory: {fileID: 11400000, guid: 0e919c3900ccb50478ba49574eb2deac,
     type: 2}
@@ -427,7 +427,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36577b17ef5f4a3887901d56cb74ad21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Blue
   opponent: {fileID: 1340668960}
   bounds:
     m_Center: {x: 0, y: 2, z: -15}
@@ -477,7 +476,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36577b17ef5f4a3887901d56cb74ad21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Red
   opponent: {fileID: 1307818071}
   bounds:
     m_Center: {x: 0, y: 2, z: 15}

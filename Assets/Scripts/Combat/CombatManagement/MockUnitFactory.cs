@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace AFSInterview.Combat
 {
     [CreateAssetMenu(menuName = "Ancient Forge/Combat/Mock Unit Factory")]
     public class MockUnitFactory : AbstractUnitFactory
     {
-        [SerializeField]
-        private UnitParameters parameters;
+        [FormerlySerializedAs("parameters"), SerializeField]
+        private UnitBlueprint blueprint;
 
         [SerializeField]
         private GameObject unitPrefab;
@@ -30,40 +30,13 @@ namespace AFSInterview.Combat
         {
             for (int i = 0; i < numberOfUnitsPerArmy; i++)
             {
-                Unit unit = InstantiateUnit(army);
-                GenerateUnitName(army, i, unit.gameObject, parameters.attributes);
-                unit.Initialize(parameters, army);
+                Unit unit = InstantiateUnit(unitPrefab, army);
+                GenerateUnitName(army, i, unit.gameObject, blueprint.title);
+                unit.Initialize(blueprint, army);
 
                 allUnits.Add(unit);
                 army.units.Add(unit);
             }
-        }
-
-        private static void GenerateUnitName(Object army, int i, Object unit, List<UnitAttribute> attributes)
-        {
-            StringBuilder stringBuilder = new();
-            stringBuilder.Append($"{army.name} {i} ");
-            foreach (UnitAttribute attribute in attributes)
-            {
-                stringBuilder.Append(attribute.name).Append(" ");
-            }
-
-            unit.name = stringBuilder.ToString();
-        }
-
-        private Unit InstantiateUnit(Army army)
-        {
-            Bounds spawnAreaBounds = army.bounds;
-
-            Vector3 position = new(
-                Random.Range(spawnAreaBounds.min.x, spawnAreaBounds.max.x),
-                0f,
-                Random.Range(spawnAreaBounds.min.z, spawnAreaBounds.max.z)
-            );
-
-            GameObject unitGameObject = Instantiate(unitPrefab, position, Quaternion.identity, army.transform);
-
-            return unitGameObject.GetComponent<Unit>();
         }
     }
 }

@@ -7,16 +7,16 @@ namespace AFSInterview.Combat
     {
         #region Public Methods
 
-        public void Initialize(UnitParameters parameters, Army army)
+        public void Initialize(UnitBlueprint blueprint, Army army)
         {
-            Attributes = parameters.attributes;
-            Health = new Health(parameters.initialHealth);
-            DamageProcessor = new DamageProcessor(Health, parameters.damageOverrides, parameters.armour,
-                parameters.damage, tag: Name);
+            Attributes = blueprint.attributes;
+            Health = new Health(blueprint.initialHealth);
+            DamageProcessor = new DamageProcessor(Health, blueprint.damageOverrides, blueprint.armour,
+                blueprint.damage, tag: Name);
 
             Health.OnDeath += NoteDeath;
 
-            _action = new AttackAction(this, army, parameters.attackInterval);
+            _action = new AttackAction(this, army, blueprint.attackInterval);
             _army = army;
         }
 
