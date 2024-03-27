@@ -19,17 +19,17 @@ namespace AFSInterview.Combat
             return units;
         }
 
-        private void SpawnUnits(Army army, List<Unit> units)
+        private void SpawnUnits(Army army, List<Unit> allUnits)
         {
             for (int i = 0; i < 3; i++)
             {
                 Unit unit = InstantiateUnit(army);
+                unit.Initialize(_parameters);
 
-                unit.army = army;
-                unit.name = $"{army.name} {i}";
-                unit.gameObject.name = unit.name;
+                unit.AssignArmy(army);
+                unit.gameObject.name = $"{army.name} {i}";
 
-                units.Add(unit);
+                allUnits.Add(unit);
                 army.units.Add(unit);
             }
         }
@@ -48,5 +48,7 @@ namespace AFSInterview.Combat
 
             return unitGameObject.GetComponent<Unit>();
         }
+
+        private readonly UnitParameters _parameters = new() { armour = 2, damage = 5, initialHealth = 6 };
     }
 }

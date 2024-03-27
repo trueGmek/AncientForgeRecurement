@@ -6,9 +6,6 @@ namespace AFSInterview.Combat
     public class Army : MonoBehaviour
     {
         [SerializeField]
-        private string name;
-
-        [SerializeField]
         private Army opponent;
 
 

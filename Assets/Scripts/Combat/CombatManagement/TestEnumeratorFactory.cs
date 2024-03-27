@@ -27,7 +27,7 @@ namespace AFSInterview.Combat
             {
                 for (int i = _index + 1; i < _list.Count; i++)
                 {
-                    if (_list[i].IsDead())
+                    if (_list[i].Health.IsDead)
                         continue;
 
                     _index = i;
@@ -40,7 +40,7 @@ namespace AFSInterview.Combat
 
             public void Reset()
             {
-                _list.RemoveAll(t => t.IsDead());
+                _list.RemoveAll(t => t.Health.IsDead);
                 _index = 0;
             }
 
