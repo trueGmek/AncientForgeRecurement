@@ -28,7 +28,7 @@ public class AttackAction : IAction
         Unit target = GetTarget();
         Debug.Log($"{_unit.Name} is attacking {target.Name}");
 
-        target.DamageProcessor.ProcessDamage(_unit.DamageProcessor.CreateDamageData());
+        target.DamageProcessor.ProcessDamage(_unit.DamageProcessor.CreateDamageData(target));
         _cooldownTimer.Start(_attackInterval);
     }
 

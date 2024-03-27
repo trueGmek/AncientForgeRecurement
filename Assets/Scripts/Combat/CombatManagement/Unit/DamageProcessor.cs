@@ -1,41 +1,49 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-public class DamageProcessor
+
+namespace AFSInterview.Combat
 {
-    public DamageProcessor(Health health, int armourPoints, int damage, string tag)
+    public class DamageProcessor
     {
-        _health = health;
-        _armourPoints = armourPoints;
-        _damage = damage;
-        _tag = tag;
+        public DamageProcessor(Health health, List<DamageOverrides> damageOverrides, int armourPoints, int damage,
+            string tag)
+        {
+            _health = health;
+            _armourPoints = armourPoints;
+            _damage = damage;
+            _tag = tag;
+            _damageOverrides = damageOverrides;
+        }
+
+        #region Public Methods
+
+        public void ProcessDamage(DamageData damageData)
+        {
+            int damage = Mathf.Max(1, damageData.damageValue - _armourPoints);
+
+            Debug.Log($"{_tag} Got {damage.ToString()} points of damage");
+
+            _health.GetDamage(damage);
+        }
+
+        public DamageData CreateDamageData(Unit target)
+        {
+            return new DamageDataBuilder(_damage).AddOverride(target, _damageOverrides).ToDamageData();
+        }
+
+        #endregion Public Methods
+
+        #region Private Variables
+
+        private readonly Health _health;
+        private readonly string _tag;
+
+        private readonly int _armourPoints;
+        private readonly List<DamageOverrides> _damageOverrides;
+
+        private readonly int _damage;
+
+        #endregion Private Variables
     }
-
-    #region Public Methods
-
-    public void ProcessDamage(DamageData damageData)
-    {
-        int damage = Mathf.Max(1, damageData.damageValue - _armourPoints);
-
-        Debug.Log($"{_tag} Got {damage.ToString()} points of damage");
-
-        _health.GetDamage(damage);
-    }
-
-    public DamageData CreateDamageData()
-    {
-        return new DamageData(_damage);
-    }
-
-    #endregion Public Methods
-
-    #region Private Variables
-
-    private readonly Health _health;
-    private readonly string _tag;
-
-    private readonly int _armourPoints;
-
-    private readonly int _damage;
-
-    #endregion Private Variables
 }

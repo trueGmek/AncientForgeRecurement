@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 131f535e8ecb4747a5c5f91ee2ea6163, type: 3}
+  m_Name: Mock Unit Factory
+  m_EditorClassIdentifier: 
+  parameters:
+    initialHealth: 6
+    armour: 2
+    damage: 5
+    attackInterval: 2
+    attributes:
+    - {fileID: 11400000, guid: 7f9be18418b61bc4e9fcfe1f9c237da3, type: 2}
+    - {fileID: 11400000, guid: 6cbf4f0dca1c58744917cdc3bd05a6f5, type: 2}
+    damageOverrides:
+    - attribute: {fileID: 11400000, guid: 7f9be18418b61bc4e9fcfe1f9c237da3, type: 2}
+      damageOverrideValue: 0
+  unitPrefab: {fileID: 8830091981023812804, guid: 606aa03eafd82d0468ba7a443c90e781,
+    type: 3}

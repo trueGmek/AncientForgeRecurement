@@ -1,9 +1,12 @@
-﻿public class DamageData
+﻿namespace AFSInterview.Combat
 {
-    public readonly int damageValue;
-
-    public DamageData(int damageValue)
+    public class DamageData
     {
-        this.damageValue = damageValue;
+        public readonly int damageValue;
+
+        public DamageData(int damageValue)
+        {
+            this.damageValue = damageValue;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace AFSInterview.Combat
 {
@@ -8,8 +9,10 @@ namespace AFSInterview.Combat
 
         public void Initialize(UnitParameters parameters, Army army)
         {
+            Attributes = parameters.attributes;
             Health = new Health(parameters.initialHealth);
-            DamageProcessor = new DamageProcessor(Health, parameters.armour, parameters.damage, Name);
+            DamageProcessor = new DamageProcessor(Health, parameters.damageOverrides, parameters.armour,
+                parameters.damage, tag: Name);
 
             Health.OnDeath += NoteDeath;
 
@@ -41,6 +44,7 @@ namespace AFSInterview.Combat
 
         public DamageProcessor DamageProcessor { get; private set; }
         public Health Health { get; private set; }
+        public List<UnitAttribute> Attributes { get; private set; }
         public string Name => gameObject.name;
 
         #endregion Public Variables

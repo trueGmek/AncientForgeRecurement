@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 namespace AFSInterview.Combat
@@ -6,6 +7,9 @@ namespace AFSInterview.Combat
     [CreateAssetMenu(menuName = "Ancient Forge/Combat/Test Unit Factory")]
     public class TestUnitFactory : AbstractUnitFactory
     {
+        [SerializeField]
+        private UnitParameters parameters;
+
         public GameObject unitPrefab;
 
         public override List<Unit> CreateUnits(Army blue, Army red)
@@ -24,13 +28,24 @@ namespace AFSInterview.Combat
             for (int i = 0; i < 3; i++)
             {
                 Unit unit = InstantiateUnit(army);
-                unit.Initialize(_parameters, army);
-
-                unit.gameObject.name = $"{army.name} {i}";
+                GenerateUnitName(army, i, unit.gameObject, parameters.attributes);
+                unit.Initialize(parameters, army);
 
                 allUnits.Add(unit);
                 army.units.Add(unit);
             }
+        }
+
+        private static void GenerateUnitName(Object army, int i, GameObject unit, List<UnitAttribute> attributes)
+        {
+            StringBuilder stringBuilder = new();
+            stringBuilder.Append($"{army.name} {i} ");
+            foreach (UnitAttribute attribute in attributes)
+            {
+                stringBuilder.Append(attribute.name).Append(" ");
+            }
+
+            unit.name = stringBuilder.ToString();
         }
 
         private Unit InstantiateUnit(Army army)
@@ -47,8 +62,5 @@ namespace AFSInterview.Combat
 
             return unitGameObject.GetComponent<Unit>();
         }
-
-        private readonly UnitParameters _parameters = new()
-            { armour = 2, damage = 5, initialHealth = 6, attackInterval = 2 };
     }
 }

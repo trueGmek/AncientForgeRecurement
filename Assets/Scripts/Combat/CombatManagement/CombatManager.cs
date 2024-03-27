@@ -41,15 +41,15 @@ namespace AFSInterview.Combat
         {
             _units = abstractUnitFactory.CreateUnits(blue, red);
 
-            combatIterator = abstractCombatEnumeratorFactory.Get(_units);
+            _combatIterator = abstractCombatEnumeratorFactory.Get(_units);
 
-            isCombatInProgress = true;
+            _isCombatInProgress = true;
         }
 
 
         private void FixedUpdate()
         {
-            if (Time.time > nextUpdateTime && isCombatInProgress)
+            if (Time.time > nextUpdateTime && _isCombatInProgress)
             {
                 nextUpdateTime = Time.time + timeBetweenRounds;
 
@@ -59,15 +59,15 @@ namespace AFSInterview.Combat
 
         private void SimulationTick()
         {
-            if (combatIterator.Current != null)
-                combatIterator.Current.Tick();
+            if (_combatIterator.Current != null)
+                _combatIterator.Current.Tick();
 
-            combatIterator.MoveNext();
+            _combatIterator.MoveNext();
         }
 
         private void NoteArmyDefeated(Army army)
         {
-            isCombatInProgress = false;
+            _isCombatInProgress = false;
             Debug.Log($"{army.name} army lost");
         }
 
@@ -77,8 +77,8 @@ namespace AFSInterview.Combat
         #region Private Variables
 
         private List<Unit> _units;
-        private IEnumerator<Unit> combatIterator;
-        private bool isCombatInProgress;
+        private IEnumerator<Unit> _combatIterator;
+        private bool _isCombatInProgress;
 
         private float nextUpdateTime;
 
