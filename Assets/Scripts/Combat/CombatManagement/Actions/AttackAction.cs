@@ -28,8 +28,11 @@ public class AttackAction : IAction
         Unit target = GetTarget();
         Debug.Log($"{_unit.Name} is attacking {target.Name}");
 
-        target.DamageProcessor.ProcessDamage(_unit.DamageProcessor.CreateDamageData(target));
+        DamageData damageData = _unit.DamageProcessor.CreateDamageData(target);
+        target.DamageProcessor.ProcessDamage(damageData);
         _cooldownTimer.Start(_attackInterval);
+
+        _unit.FXController.ApplyAttackDamageEffect(damageData, target);
     }
 
     #endregion Public Methods

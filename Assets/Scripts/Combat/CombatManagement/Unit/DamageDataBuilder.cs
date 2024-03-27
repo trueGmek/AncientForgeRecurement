@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using UnityEngine;
 
 namespace AFSInterview.Combat
 {
@@ -9,11 +11,12 @@ namespace AFSInterview.Combat
         public DamageDataBuilder(int damageValue)
         {
             DamageValue = damageValue;
+            DamageDealer = null;
         }
 
         public DamageData ToDamageData()
         {
-            return new DamageData(DamageValue);
+            return new DamageData(DamageValue, DamageDealer);
         }
 
         public static explicit operator DamageData(DamageDataBuilder damageDataBuilder)
@@ -24,7 +27,12 @@ namespace AFSInterview.Combat
         #endregion Public Methods
 
 
+        #region Public Variables
+
         public int DamageValue;
+        public Transform DamageDealer;
+
+        #endregion Public Variables
     }
 
     public static class DamageDataBuilderExtenstion
@@ -38,6 +46,13 @@ namespace AFSInterview.Combat
                     damageDataBuilder.DamageValue = damageOverride.damageOverrideValue;
             }
 
+            return damageDataBuilder;
+        }
+
+        public static DamageDataBuilder AddDamageDealer(this DamageDataBuilder damageDataBuilder,
+            Transform damageDealer)
+        {
+            damageDataBuilder.DamageDealer = damageDealer;
             return damageDataBuilder;
         }
     }

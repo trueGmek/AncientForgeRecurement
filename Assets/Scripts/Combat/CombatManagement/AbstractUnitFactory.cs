@@ -23,7 +23,7 @@ namespace AFSInterview.Combat
 
             Vector3 position = new(
                 Random.Range(spawnAreaBounds.min.x, spawnAreaBounds.max.x),
-                0f,
+                Random.Range(spawnAreaBounds.min.y, spawnAreaBounds.max.y),
                 Random.Range(spawnAreaBounds.min.z, spawnAreaBounds.max.z)
             );
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -6,10 +7,11 @@ namespace AFSInterview.Combat
 {
     public class DamageProcessor
     {
-        public DamageProcessor(Health health, List<DamageOverrides> damageOverrides, int armourPoints, int damage,
+        public DamageProcessor(Unit unit, List<DamageOverrides> damageOverrides, int armourPoints, int damage,
             string tag)
         {
-            _health = health;
+            _health = unit.Health;
+            _damageDealerTransform = unit.transform;
             _armourPoints = armourPoints;
             _damage = damage;
             _tag = tag;
@@ -25,18 +27,31 @@ namespace AFSInterview.Combat
             Debug.Log($"{_tag} Got {damage.ToString()} points of damage");
 
             _health.GetDamage(damage);
+
+            OnGetDamage?.Invoke(damageData);
         }
 
         public DamageData CreateDamageData(Unit target)
         {
-            return new DamageDataBuilder(_damage).AddOverride(target, _damageOverrides).ToDamageData();
+            DamageDataBuilder builder = new DamageDataBuilder(_damage)
+                .AddOverride(target, _damageOverrides)
+                .AddDamageDealer(_damageDealerTransform);
+
+            return builder.ToDamageData();
         }
 
         #endregion Public Methods
 
+        #region Public Variables
+
+        public Action<DamageData> OnGetDamage;
+
+        #endregion Public Variables
+
         #region Private Variables
 
         private readonly Health _health;
+        private readonly Transform _damageDealerTransform;
         private readonly string _tag;
 
         private readonly int _armourPoints;
