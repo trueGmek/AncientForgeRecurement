@@ -9,35 +9,41 @@ public class TestEnumeratorFactory : AbstractCombatEnumeratorFactory
     public override IEnumerator<Unit> Get(List<Unit> units)
     {
         units.Shuffle();
-        return new RotationEnumerator<Unit>(units);
+        return new CircularEnumerator(units);
     }
 
-    private class RotationEnumerator<T> : IEnumerator<T>
+    private class CircularEnumerator : IEnumerator<Unit>
     {
-        private readonly List<T> _list;
+        private readonly List<Unit> _list;
         private int _index;
 
-        public RotationEnumerator(List<T> list)
+        public CircularEnumerator(List<Unit> list)
         {
             _list = list;
         }
 
         public bool MoveNext()
         {
-            if (_index >= _list.Count - 1)
-                Reset();
-            else
-                _index++;
+            for (int i = _index + 1; i < _list.Count; i++)
+            {
+                if (_list[i].IsDead())
+                    continue;
 
+                _index = i;
+                return true;
+            }
+
+            Reset();
             return true;
         }
 
         public void Reset()
         {
+            _list.RemoveAll(t => t.IsDead());
             _index = 0;
         }
 
-        public T Current => _list[_index];
+        public Unit Current => _list[_index];
 
         object IEnumerator.Current => Current;
 

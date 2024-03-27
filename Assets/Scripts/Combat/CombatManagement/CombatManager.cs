@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace AFSInterview.Combat
@@ -16,14 +17,30 @@ namespace AFSInterview.Combat
         [SerializeField]
         private AbstractCombatEnumeratorFactory abstractCombatEnumeratorFactory;
 
+        [SerializeField]
+        private Army blue;
+
+        [SerializeField]
+        private Army red;
+
         #endregion Inspector Variables
 
         #region Unity Methods
 
+        private void OnEnable()
+        {
+            OnArmyDefeated += NoteArmyDefeated;
+        }
+
+        private void OnDisable()
+        {
+            OnArmyDefeated -= NoteArmyDefeated;
+        }
+
         private void Start()
         {
-            _units = abstractUnitFactory.CreateUnits();
-            _units.Shuffle();
+            _units = abstractUnitFactory.CreateUnits(blue, red);
+            isCombatInProgress = true;
 
             combatIterator = abstractCombatEnumeratorFactory.Get(_units);
         }
@@ -31,9 +48,10 @@ namespace AFSInterview.Combat
 
         private void FixedUpdate()
         {
-            if (Time.time > nextUpdateTime)
+            if (Time.time > nextUpdateTime && isCombatInProgress)
             {
                 nextUpdateTime = Time.time + timeBetweenRounds;
+
                 SimulationTick();
             }
         }
@@ -46,6 +64,12 @@ namespace AFSInterview.Combat
             combatIterator.MoveNext();
         }
 
+        private void NoteArmyDefeated(Army army)
+        {
+            isCombatInProgress = false;
+            Debug.Log($"{army.name} army lost");
+        }
+
         #endregion Unity Methods
 
 
@@ -53,9 +77,16 @@ namespace AFSInterview.Combat
 
         private List<Unit> _units;
         private IEnumerator<Unit> combatIterator;
+        private bool isCombatInProgress;
 
         private float nextUpdateTime = 0;
 
         #endregion Private Variables
+
+        #region Public Events
+
+        public static Action<Army> OnArmyDefeated;
+
+        #endregion Public Events
     }
 }

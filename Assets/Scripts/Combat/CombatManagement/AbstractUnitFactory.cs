@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace AFSInterview.Combat
 {
-    public abstract class  AbstractUnitFactory : ScriptableObject
+    public abstract class AbstractUnitFactory : ScriptableObject
     {
-        public abstract List<Unit> CreateUnits();
+        public abstract List<Unit> CreateUnits(Army blue, Army red);
     }
 }
