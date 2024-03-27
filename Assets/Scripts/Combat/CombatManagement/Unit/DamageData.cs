@@ -2,11 +2,11 @@
 {
     public class DamageData
     {
-        public readonly int damageValue;
+        public readonly int DamageValue;
 
         public DamageData(int damageValue)
         {
-            this.damageValue = damageValue;
+            this.DamageValue = damageValue;
         }
     }
 }

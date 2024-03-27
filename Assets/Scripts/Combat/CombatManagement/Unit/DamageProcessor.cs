@@ -20,7 +20,7 @@ namespace AFSInterview.Combat
 
         public void ProcessDamage(DamageData damageData)
         {
-            int damage = Mathf.Max(1, damageData.damageValue - _armourPoints);
+            int damage = Mathf.Max(1, damageData.DamageValue - _armourPoints);
 
             Debug.Log($"{_tag} Got {damage.ToString()} points of damage");
 
