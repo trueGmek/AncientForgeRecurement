@@ -24,9 +24,8 @@ namespace AFSInterview.Combat
             for (int i = 0; i < 3; i++)
             {
                 Unit unit = InstantiateUnit(army);
-                unit.Initialize(_parameters);
+                unit.Initialize(_parameters, army);
 
-                unit.AssignArmy(army);
                 unit.gameObject.name = $"{army.name} {i}";
 
                 allUnits.Add(unit);
@@ -49,6 +48,7 @@ namespace AFSInterview.Combat
             return unitGameObject.GetComponent<Unit>();
         }
 
-        private readonly UnitParameters _parameters = new() { armour = 2, damage = 5, initialHealth = 6 };
+        private readonly UnitParameters _parameters = new()
+            { armour = 2, damage = 5, initialHealth = 6, attackInterval = 2 };
     }
 }

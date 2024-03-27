@@ -40,9 +40,10 @@ namespace AFSInterview.Combat
         private void Start()
         {
             _units = abstractUnitFactory.CreateUnits(blue, red);
-            isCombatInProgress = true;
 
             combatIterator = abstractCombatEnumeratorFactory.Get(_units);
+
+            isCombatInProgress = true;
         }
 
 
@@ -79,7 +80,7 @@ namespace AFSInterview.Combat
         private IEnumerator<Unit> combatIterator;
         private bool isCombatInProgress;
 
-        private float nextUpdateTime = 0;
+        private float nextUpdateTime;
 
         #endregion Private Variables
 

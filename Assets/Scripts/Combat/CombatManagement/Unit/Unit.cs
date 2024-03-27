@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace AFSInterview.Combat
 {
@@ -7,42 +6,25 @@ namespace AFSInterview.Combat
     {
         #region Public Methods
 
-        public void Initialize(UnitParameters parameters)
+        public void Initialize(UnitParameters parameters, Army army)
         {
             Health = new Health(parameters.initialHealth);
             DamageProcessor = new DamageProcessor(Health, parameters.armour, parameters.damage, Name);
 
             Health.OnDeath += NoteDeath;
+
+            _action = new AttackAction(this, army, parameters.attackInterval);
+            _army = army;
         }
 
         public virtual void Tick()
         {
-            Attack();
-        }
-
-        public void AssignArmy(Army army)
-        {
-            _army = army;
+            _action.Perform();
         }
 
         #endregion Public Methods
 
         #region Private Methods
-
-        private void Attack()
-        {
-            Unit target = GetTarget();
-            Debug.Log($"{Name} is attacking {target.Name}");
-
-            target.DamageProcessor.ProcessDamage(DamageProcessor.CreateDamageData());
-        }
-
-        private Unit GetTarget()
-        {
-            List<Unit> opponents = _army.Opponent.Units;
-
-            return opponents[Random.Range(0, opponents.Count)];
-        }
 
         private void NoteDeath()
         {
@@ -57,7 +39,7 @@ namespace AFSInterview.Combat
 
         #region Public Variables
 
-        private DamageProcessor DamageProcessor { get; set; }
+        public DamageProcessor DamageProcessor { get; private set; }
         public Health Health { get; private set; }
         public string Name => gameObject.name;
 
@@ -66,6 +48,7 @@ namespace AFSInterview.Combat
         #region Private Variables
 
         private Army _army;
+        private IAction _action;
 
         #endregion Private Variables
     }
