@@ -20,3 +20,4 @@ MonoBehaviour:
   attributes:
   - {fileID: 11400000, guid: 7f9be18418b61bc4e9fcfe1f9c237da3, type: 2}
   damageOverrides: []
+  prefab: {fileID: 8830091981023812804, guid: 606aa03eafd82d0468ba7a443c90e781, type: 3}

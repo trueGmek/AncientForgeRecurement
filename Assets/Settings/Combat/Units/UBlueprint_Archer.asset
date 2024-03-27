@@ -19,4 +19,11 @@ MonoBehaviour:
   attackInterval: 1
   attributes:
   - {fileID: 11400000, guid: c20af26efd8411144876ac0ed7fdc20f, type: 2}
-  damageOverrides: []
+  damageOverrides:
+  - attribute: {fileID: 11400000, guid: bbef09998b61d014790d79a655ebd063, type: 2}
+    damageOverrideValue: 10
+  - attribute: {fileID: 11400000, guid: 6cbf4f0dca1c58744917cdc3bd05a6f5, type: 2}
+    damageOverrideValue: 10
+  - attribute: {fileID: 11400000, guid: 7f9be18418b61bc4e9fcfe1f9c237da3, type: 2}
+    damageOverrideValue: 10
+  prefab: {fileID: 8830091981023812804, guid: 606aa03eafd82d0468ba7a443c90e781, type: 3}

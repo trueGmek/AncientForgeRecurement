@@ -21,3 +21,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 061cf283caf310b4082bb1067905b15f, type: 2}
   - {fileID: 11400000, guid: 6cbf4f0dca1c58744917cdc3bd05a6f5, type: 2}
   damageOverrides: []
+  prefab: {fileID: 8830091981023812804, guid: 606aa03eafd82d0468ba7a443c90e781, type: 3}
