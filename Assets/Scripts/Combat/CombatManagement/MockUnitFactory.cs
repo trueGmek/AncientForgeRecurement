@@ -4,28 +4,31 @@ using UnityEngine;
 
 namespace AFSInterview.Combat
 {
-    [CreateAssetMenu(menuName = "Ancient Forge/Combat/Test Unit Factory")]
-    public class TestUnitFactory : AbstractUnitFactory
+    [CreateAssetMenu(menuName = "Ancient Forge/Combat/Mock Unit Factory")]
+    public class MockUnitFactory : AbstractUnitFactory
     {
         [SerializeField]
         private UnitParameters parameters;
 
-        public GameObject unitPrefab;
+        [SerializeField]
+        private GameObject unitPrefab;
+
+        [SerializeField]
+        private int numberOfUnitsPerArmy = 3;
 
         public override List<Unit> CreateUnits(Army blue, Army red)
         {
             List<Unit> units = new();
 
             SpawnUnits(blue, units);
-
             SpawnUnits(red, units);
 
             return units;
         }
 
-        private void SpawnUnits(Army army, List<Unit> allUnits)
+        private void SpawnUnits(Army army, ICollection<Unit> allUnits)
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < numberOfUnitsPerArmy; i++)
             {
                 Unit unit = InstantiateUnit(army);
                 GenerateUnitName(army, i, unit.gameObject, parameters.attributes);
@@ -36,7 +39,7 @@ namespace AFSInterview.Combat
             }
         }
 
-        private static void GenerateUnitName(Object army, int i, GameObject unit, List<UnitAttribute> attributes)
+        private static void GenerateUnitName(Object army, int i, Object unit, List<UnitAttribute> attributes)
         {
             StringBuilder stringBuilder = new();
             stringBuilder.Append($"{army.name} {i} ");
