@@ -155,16 +155,22 @@ MonoBehaviour:
   items:
   - name: Wooden shield
     value: 90
+    itemEffects: []
   - name: Bow
     value: 150
+    itemEffects: []
   - name: Mana Potion
     value: 60
+    itemEffects: []
   - name: Sword
     value: 130
+    itemEffects: []
   - name: Long Sword
     value: 160
+    itemEffects: []
   - name: Plate Armor
     value: 300
+    itemEffects: []
   money: 280
 --- !u!4 &117263
 Transform:
@@ -550,6 +556,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 278868168}
+  - component: {fileID: 278868169}
   m_Layer: 0
   m_Name: Army1
   m_TagString: Untagged
@@ -572,6 +579,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &278868169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278868167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36577b17ef5f4a3887901d56cb74ad21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  opponent: {fileID: 1353391286}
+  bounds:
+    m_Center: {x: -8, y: 2, z: 0}
+    m_Extent: {x: 2, y: 2, z: 10}
+  units: []
 --- !u!1001 &434945508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -698,9 +722,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 717833686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e0b28e218bf4b26a46ee41ec1fa24f8, type: 3}
+  m_Script: {fileID: 11500000, guid: 805fc05ee412493da7d09dc2db2599bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBetweenRounds: 1
+  abstractUnitFactory: {fileID: 11400000, guid: 9edbeaeeeb275e84aa59d265349dfbbc,
+    type: 2}
+  abstractCombatEnumeratorFactory: {fileID: 11400000, guid: 0e919c3900ccb50478ba49574eb2deac,
+    type: 2}
+  blue: {fileID: 278868169}
+  red: {fileID: 1353391286}
 --- !u!1 &726838010
 GameObject:
   m_ObjectHideFlags: 0
@@ -1294,6 +1325,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1353391285}
+  - component: {fileID: 1353391286}
   m_Layer: 0
   m_Name: Army2
   m_TagString: Untagged
@@ -1316,6 +1348,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1353391286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353391284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36577b17ef5f4a3887901d56cb74ad21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  opponent: {fileID: 278868169}
+  bounds:
+    m_Center: {x: 8, y: 2, z: 0}
+    m_Extent: {x: 2, y: 2, z: 10}
+  units: []
 --- !u!4 &1362504115 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6760591476060598716, guid: 70297e35c79c32843b2cbbda048d720c,
