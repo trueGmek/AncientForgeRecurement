@@ -11,9 +11,6 @@ namespace AFSInterview.Combat
         private UnitBlueprint blueprint;
 
         [SerializeField]
-        private GameObject unitPrefab;
-
-        [SerializeField]
         private int numberOfUnitsPerArmy = 3;
 
         public override List<Unit> CreateUnits(Army blue, Army red)
@@ -30,7 +27,7 @@ namespace AFSInterview.Combat
         {
             for (int i = 0; i < numberOfUnitsPerArmy; i++)
             {
-                Unit unit = InstantiateUnit(unitPrefab, army);
+                Unit unit = InstantiateUnit(blueprint.prefab, army);
                 GenerateUnitName(army, i, unit.gameObject, blueprint.title);
                 unit.Initialize(blueprint, army);
 

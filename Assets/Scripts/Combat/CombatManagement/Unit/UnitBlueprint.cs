@@ -13,5 +13,7 @@ namespace AFSInterview.Combat
         public int attackInterval;
         public List<UnitAttribute> attributes;
         public List<DamageOverrides> damageOverrides;
+
+        public GameObject prefab;
     }
 }

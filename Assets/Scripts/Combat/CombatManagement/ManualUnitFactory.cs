@@ -15,9 +15,6 @@ namespace AFSInterview.Combat
         [SerializeField]
         private List<Group> redArmyBlueprint;
 
-        [SerializeField]
-        private GameObject unitPrefab;
-
         #endregion Public Variables
 
 
@@ -43,7 +40,7 @@ namespace AFSInterview.Combat
             {
                 for (int i = 0; i < group.amount; i++)
                 {
-                    Unit unit = InstantiateUnit(unitPrefab, army);
+                    Unit unit = InstantiateUnit(group.blueprint.prefab, army);
 
                     GenerateUnitName(army, i, unit.gameObject, group.blueprint.title);
                     unit.Initialize(group.blueprint, army);
