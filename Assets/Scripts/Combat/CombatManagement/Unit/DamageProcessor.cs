@@ -11,7 +11,6 @@ namespace AFSInterview.Combat
             string tag)
         {
             _health = unit.Health;
-            _damageDealerTransform = unit.transform;
             _armourPoints = armourPoints;
             _damage = damage;
             _tag = tag;
@@ -34,8 +33,7 @@ namespace AFSInterview.Combat
         public DamageData CreateDamageData(Unit target)
         {
             DamageDataBuilder builder = new DamageDataBuilder(_damage)
-                .AddOverride(target, _damageOverrides)
-                .AddDamageDealer(_damageDealerTransform);
+                .AddOverride(target, _damageOverrides);
 
             return builder.ToDamageData();
         }
@@ -51,7 +49,6 @@ namespace AFSInterview.Combat
         #region Private Variables
 
         private readonly Health _health;
-        private readonly Transform _damageDealerTransform;
         private readonly string _tag;
 
         private readonly int _armourPoints;

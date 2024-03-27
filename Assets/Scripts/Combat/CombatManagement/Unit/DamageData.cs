@@ -1,17 +1,13 @@
-﻿using UnityEngine;
-
-namespace AFSInterview.Combat
+﻿namespace AFSInterview.Combat
 {
     public class DamageData
     {
         public readonly int DamageValue;
-        public readonly Transform DamageDealer;
 
 
-        public DamageData(int damageValue, Transform damageDealer)
+        public DamageData(int damageValue)
         {
             DamageValue = damageValue;
-            DamageDealer = damageDealer;
         }
     }
 }
