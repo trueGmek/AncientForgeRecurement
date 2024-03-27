@@ -4,5 +4,4 @@
 public class UnitAttribute : ScriptableObject
 {
     public string type;
-    public Color color;
 }
